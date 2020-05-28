@@ -18,12 +18,12 @@ class StateLogInline(GenericTabularInline):
         return True
 
     fields = (
-        'transition',
-        'source_state',
-        'state',
+        'get_source_state_display',
+        'get_state_display',
         'by',
         'description',
         'timestamp',
+        'transition',
     )
 
     def get_readonly_fields(self, request, obj=None):
@@ -32,4 +32,4 @@ class StateLogInline(GenericTabularInline):
     def get_queryset(self, request):
         return super(StateLogInline, self).get_queryset(
             request
-        ).order_by(F('timestamp').desc())
+        ).prefetch_related('content_object').order_by(F('timestamp').desc())
