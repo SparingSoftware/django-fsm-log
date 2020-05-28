@@ -30,7 +30,6 @@ class StateLog(models.Model):
         verbose_name=_("Source state")
     )
     state = models.CharField(
-        "Target state",
         max_length=255,
         db_index=True,
         verbose_name=_("Target state")
